@@ -17,12 +17,10 @@ import { PointsModule } from './points/points.module';
       useFactory: async (configService: ConfigService) => ({
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
-        ssl: true,
-        extra: {
-          ssl: {
-            rejectUnauthorized: false,
-          },
-        },
+        ssl: process.env.PRODUCTION ? true : false,
+        extra: process.env.PRODUCTION
+          ? { ssl: { rejectUnauthorized: false } }
+          : '',
         autoLoadEntities: true,
         synchronize: true,
       }),
