@@ -18,6 +18,11 @@ import { PointsModule } from './points/points.module';
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
         ssl: true,
+        extra: {
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        },
         autoLoadEntities: true,
         synchronize: true,
       }),
