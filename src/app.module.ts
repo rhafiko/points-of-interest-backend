@@ -17,6 +17,7 @@ import { PointsModule } from './points/points.module';
       useFactory: async (configService: ConfigService) => ({
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
+        ssl: true,
         autoLoadEntities: true,
         synchronize: true,
       }),
