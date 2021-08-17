@@ -9,7 +9,7 @@ import { GetPointsFilterDto } from './dto/get-points-filter.dto';
 import { PointsRepository } from './points.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Point } from './point.entity';
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 
 @Injectable()
 export class PointsService {

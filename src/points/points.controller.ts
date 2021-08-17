@@ -11,8 +11,8 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiQuery } from '@nestjs/swagger';
-import { GetUser } from 'src/auth/get-user.decorator';
-import { User } from 'src/auth/user.entity';
+import { GetUser } from '../auth/get-user.decorator';
+import { User } from '../auth/user.entity';
 import { CreatePointDto } from './dto/create-point.dto';
 import { GetPointsFilterDto } from './dto/get-points-filter.dto';
 import { UpdatePointDto } from './dto/update-point.dto';

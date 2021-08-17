@@ -1,4 +1,4 @@
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 import { EntityRepository, Repository } from 'typeorm';
 import { CreatePointDto } from './dto/create-point.dto';
 import { GetPointsFilterDto } from './dto/get-points-filter.dto';
