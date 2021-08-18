@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreatePointDto } from './dto/create-point.dto';
-import { GetPointsFilterDto } from './dto/get-points-filter.dto';
-import { PointsRepository } from './points.repository';
+import { CreatePointDto } from '../dto/create-point.dto';
+import { GetPointsFilterDto } from '../dto/get-points-filter.dto';
+import { PointsRepository } from '../repository/points.repository';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Point } from './point.entity';
-import { User } from '../auth/user.entity';
+import { Point } from '../entity/point.entity';
+import { User } from '../../auth/entity/user.entity';
 
 @Injectable()
 export class PointsService {

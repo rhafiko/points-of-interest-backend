@@ -10,13 +10,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from '../auth/get-user.decorator';
-import { User } from '../auth/user.entity';
+import { GetUser } from '../auth/decorators/get-user.decorator';
+import { User } from '../auth/entity/user.entity';
 import { CreatePointDto } from './dto/create-point.dto';
 import { GetPointsFilterDto } from './dto/get-points-filter.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
-import { Point } from './point.entity';
-import { PointsService } from './points.service';
+import { Point } from './entity/point.entity';
+import { PointsService } from './services/points.service';
 
 @Controller('points')
 @UseGuards(AuthGuard())

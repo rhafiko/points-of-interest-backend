@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { PointsRepository } from './points.repository';
+import { PointsRepository } from '../repository/points.repository';
 import { PointsService } from './points.service';
 
 const mockPointsRepository = () => ({

@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { PointsController } from './points.controller';
-import { PointsService } from './points.service';
+import { PointsService } from './services/points.service';
 
 const mockPoints = [
   {

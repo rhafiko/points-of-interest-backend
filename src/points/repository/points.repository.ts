@@ -1,8 +1,8 @@
-import { User } from '../auth/user.entity';
+import { User } from '../../auth/entity/user.entity';
 import { EntityRepository, Repository } from 'typeorm';
-import { CreatePointDto } from './dto/create-point.dto';
-import { GetPointsFilterDto } from './dto/get-points-filter.dto';
-import { Point } from './point.entity';
+import { CreatePointDto } from '../dto/create-point.dto';
+import { GetPointsFilterDto } from '../dto/get-points-filter.dto';
+import { Point } from '../entity/point.entity';
 import { InternalServerErrorException, Logger } from '@nestjs/common';
 
 @EntityRepository(Point)
