@@ -1,9 +1,4 @@
-import {
-  HttpException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePointDto } from './dto/create-point.dto';
 import { GetPointsFilterDto } from './dto/get-points-filter.dto';
 import { PointsRepository } from './points.repository';
@@ -44,7 +39,6 @@ export class PointsService {
   async updatePoint(id: string, title: string, user: User): Promise<Point> {
     const foundPoint = await this.getPointById(id, user);
     foundPoint.title = title;
-    await this.pointsRepository.save(foundPoint);
-    return foundPoint;
+    return this.pointsRepository.save(foundPoint);
   }
 }
