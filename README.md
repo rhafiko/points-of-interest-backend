@@ -111,6 +111,8 @@ $ npm run start:dev
 10. Trace a new route to the select place
 11. Config users profile to add photo
 12. Option on users profile to make all places as public/private by default
+13. User full name and email
+14. Password recover option
 
 
 
