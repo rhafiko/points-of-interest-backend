@@ -24,7 +24,14 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is App, `Points of Interest`, allows users to mark/edit their points of interest on a map. Users can use the app to share their Points of Interest with each other.
+
+Users need to create an account and sign in to have access to the map and start to do mark Points of Interest.
+
+**About Limitations** and what changes would need to be considered to scale to 100, 1 000, and 100 000 concurrent users:
+- As the solution uses JWT tokens, it is ready for scale as microservice. 
+- In order to support the load and concurrent users, it may be necessary to review the database connection pool.
+- The app is mobile-friendly but, needs some enhancements, like the use of device GPS to trace routes, receive push notifications when a new place is shared. As it isn't a native/hybrid solution, have some limitations about hardware features access.
 
 ## Installation
 
@@ -32,42 +39,72 @@
 $ npm install
 ```
 
+## Environment Variables
+
+- The database used is PostgreSQL
+- Running on the development environment, it is necessary to change the DATABASE_URL located in the file: 
+
+```html
+src/environment
+  .env.stage.dev
+    DATABASE_URL=postgres://postgres:postgres@localhost:5432/point-management
+
+Current value: user......: postgres
+               password..: postgres
+               host......: localhost
+               port......: 5432
+               database..: point-management
+
+```
+- Just create the database point-management.
+- The NestJs framework is configured to auto-refresh and create the database struct at the start by the use of TypeORM. 
+- However, if necessary, here is the database script for creation:
+
+```javascript
+
+CREATE TABLE public."user" (
+	id uuid NOT NULL DEFAULT uuid_generate_v4(),
+	username varchar NOT NULL,
+	"password" varchar NOT NULL,
+	CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY (id),
+	CONSTRAINT "UQ_78a916df40e02a9deb1c4b75edb" UNIQUE (username)
+);
+
+CREATE TABLE public.point (
+	id uuid NOT NULL DEFAULT uuid_generate_v4(),
+	title varchar NOT NULL,
+	"userId" uuid NULL,
+	lat varchar NOT NULL,
+	lng varchar NOT NULL,
+	CONSTRAINT "PK_391f59a9491a08961038a615371" PRIMARY KEY (id)
+);
+
+ALTER TABLE public.point ADD CONSTRAINT "FK_c01766b92e52572f0b871c24bb6" FOREIGN KEY ("userId") REFERENCES "user"(id);
+
+```
+
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# development (localhost)
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Next Features
 
-```bash
-# unit tests
-$ npm run test
+1. Rate the locals using stars. For rates from 1 to 2 stars force comment.
+2. Add comments and photos, allowing users to share their impressions about it.
+3. Show top-rated places near my location, with the option to sort by most recent, top-rated, etc.
+4. Share local and Allow other users to view it by using of @userName
+5. Change local visibility by toggle public/private or shared, viewing its attributes as owner, rate, and users comments.
+6. Bookmark local as preferred and provide quick access to these lists
+7. Search places by a distance range
+8. Group places when zoomed out.
+9. Add tags/categories of places like “next travel, stay away, cozy, etc”
+10. Trace a new route to the select place
+11. Config users profile to add photo
+12. Option on users profile to make all places as public/private by default
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
