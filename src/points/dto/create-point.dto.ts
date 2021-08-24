@@ -14,7 +14,7 @@ export class CreatePointDto {
     message: 'Place Name must be longer than or equal to 4 characters',
   })
   @MaxLength(80, {
-    message: 'Place Name must be shorter than or equal to 40 characters',
+    message: 'Place Name must be shorter than or equal to 80 characters',
   })
   title: string;
 }
