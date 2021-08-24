@@ -7,20 +7,19 @@ import { InternalServerErrorException, Logger } from '@nestjs/common';
 
 @EntityRepository(Point)
 export class PointsRepository extends Repository<Point> {
-  private logger = new Logger('TasksRepository', { timestamp: true });
+  private logger = new Logger('PointsRepository', { timestamp: true });
 
   async getPoints(filterDto: GetPointsFilterDto, user: User): Promise<Point[]> {
     const { search } = filterDto;
 
-    const query = this.createQueryBuilder('task');
+    const query = this.createQueryBuilder('point');
 
     query.where({ user });
 
     if (search) {
-      query.andWhere(
-        '(LOWER(task.title) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search))',
-        { search: `%${search}%` },
-      );
+      query.andWhere('LOWER(point.title) LIKE LOWER(:search)', {
+        search: `%${search}%`,
+      });
     }
 
     try {
